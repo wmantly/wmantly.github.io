@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title><?=$pageTitle?>William Mantly | wmantly@gmail.com</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<!-- <link media="all" type="text/css" rel="stylesheet" href="/css/styles.css"> --> 
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		
+		<!--
+		<script defer src="js/waypoints.min.js"></script>
+		<script defer src="js/waypoints-sticky.min.js"></script>
+		-->
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<style type="text/css">
+			h1,h2,h3,h4,h5{
+				padding-top: 0;
+				margin-top: 0;
+			}
+
+			body {
+				padding-top: 70px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="# ">William Mantly</a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar-collapse-1" class="collapse navbar-collapse navbar-ex4-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#codeProjects">
+								<span class="fa fa-code" aria-hidden="true"></span>
+								Code projects
+							</a>
+						</li>
+						<li>
+							<a href="#education">
+								<span class="fa fa-graduation-cap" aria-hidden="true"></span>
+								Education
+							</a>
+						</li>
+						<li>
+							<a href="#resume">
+								<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								Résumé
+							</a>
+						</li>
+						<li>
+							<a href="#contact">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+								Contact
+							</a>
+						</li>
+						<!-- <li><a href="#">Network and<br/>
+						System admin.</a></li>
+						 -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container" id="content">
+			<selection id="codeProjects" class="">
+				<div class="panel-heading">
+					<h1>Code Projects</h1>
+				</div>
+
+				<div class="panel-body">
+					<div class="col-12 col-sm-12 col-lg-6">
+						<a href="https://github.com/wmantly/jq-repeat"><h2>jq-repeat</h2></a>
+						<p>
+							A simple, yet highly customizable plugin to handle all of you're client-side repetitive DOM needs. Simple, quick and powerful templating. It is modeled after ng-repeat and shares some basic syntax, but is not a clone. I wrote this after using angular for a personal project. I found the framework to be heavy for most of my needs, but loved ng-repeat. So i wrote a plugin to bring this great feature to jQuery, for less! It's backed by mustache.js and showcases JavaScripts awesome prototype inheritance. 
+						</p>
+					</div>
+
+					<div class="col-12 col-sm-12 col-lg-6">
+						<a href="http://bitr.us"><h2>bitR</h2></a>
+						<p>
+						<a href="http://bitr.us"><img src="/images/bitr.jpg" class="pull-right img-responsive" /></a>
+							BitR is a Web portal to a Bitmessage, an encrypted, anonymizing, decentralized, and trust-less kind of email communication. It was my cohorts final project and i was the project leader. We chose python with the django framework and a postgres database for the back-end. Conveniently, Bitmessage has a JSON API that we used for access to everything from users messages to generating new user identities. The front is clean and simple, using Google's material inspired UI built on twitter-bootstrap. Once logged in everything is loaded via AJAX and the user has most of the functionality of the native Bitmessage client, jQuery and mustache.js are used to implement these features. 
+						</p>
+					</div>
+
+					<div class="col-12 col-sm-12 col-lg-6">
+						<h2>Dynamic Proxy</h2>
+						<p>
+							Must software is written for to make humans life simpler, this is one of them. A friend and I got feed up with out ISP changing our IP's and losing access to our system. We modified the node module dnsd to query questions to a redis instance and a few lines of PHP for API calls to update records. This worked for some time, but more could to be done. I wrote a web-interface in laravel to manually add and update records.
+						</p>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a href="https://github.com/wmantly">Check out my GitHub</a>
+				</div>
+			</selection>
+
+			<div id="education" class="">
+				<div class="panel-heading">
+					<h1>Education</h1>
+				</div>
+
+				<div class="panel-body">
+					<h2>Byte Academy</h2>
+					<div class="col-12 col-sm-12 col-lg-6">
+						<h3>About</h3>
+						<p>
+							Byte Academy is a twelve week, full-time bootcamp to transform you into a financial technology (FinTech) programmer. To apply, please complete the application here. Byte Academy makes you a perfect candidate for jobs in finance and technology firms. We teach you the fundamentals of programming and finance and then take a deep dive into a single area of finance. This is all integrated with daily coding projects so that by the end of your bootcamp experience, you can create a financial application from scratch.
+						</p>
+						<a href="http://www.byteacademy.co/"> Learn more about Byte Academy</a>
+					</div>
+
+					<div class="col-12 col-sm-12 col-lg-6">
+						<h3>My experience</h3>
+						<p>
+							I learned a lot from my 12 weeks at Byte Academy. My instructors were awesome, very knowledgeable and attentive. It was my first time using python and a great way learn a fun and powerful language. After learning the basics of python, we dove into the django framework. I found django to be a great web framework, but found python to be clumsy compared to PHP/node for web programing.<br />
+							I learned about project work-flow, using git and the power of pair-programing. We also did algorithm writing such as bubble-sort and queuing.<br />
+							The financial part was big bonus, as i was not looking to for a finTech camp. Learning about bound yields and cash-flows was great and i am very happy to have gained this knowledge. I wish i had more time with this topic, as the field is so wide and deep.
+
+						</p>
+					</div>
+
+					<h2>Cisco Networking Academy</h2>
+					<div class="col-12 col-sm-12 col-lg-12">
+						<h3>About</h3>
+						<p>
+							Cisco Networking Academy is an IT skills and career building program for learning institutions and individuals worldwide. More than 5.5 million people have joined the Networking Academy and become a force for change in the global economy since 1997.<br />
+							<br />
+							From secondary schools to universities to community organizations, more than 9000 institutions in 170+ countries offer the Networking Academy curriculum. It is the flagship program of Cisco Corporate Social Responsibility (CSR) efforts. Together, we are building the workforce of tomorrow.
+						</p>
+						<a href="http://www.cisco.com/web/learning/netacad/">Learn my about Cisco's Networking Academy</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="resume" class="">
+				<div class="panel-heading">
+					<h1>Résumé</h1>
+				</div>
+
+				<div class="panel-body">
+					<a href="wmantly.pdf">
+						<img src="/images/pdf-icon.png" width="128" height="128" alt="Download as PDF" />
+						
+					</a>
+					<a href="wmantly.doc">
+						<img src="/images/word-doc-icon.png" width="128" height="128" alt="Download as Word document" />	
+					</a>
+				</div>
+			</div>
+
+			<div id="contact" class="">
+				<div class="panel-heading">
+					<h1>Contact Me</h1>
+				</div>
+				
+				<div class="panel-body">
+					<p>
+						Please feel free to email at wmantly@gmail.com with regards to anything.
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		(function(){
+			var $p = $('p'),
+				matches = [
+					{
+						regEx: /php/ig,
+						text:  '<a href="https://php.net" target="_blank">PHP</a>'
+					},
+					{
+						regEx: /jquery/ig,
+						text: '<a href="https://jquery.com">jQuery</a>'
+					},
+					{
+						regEx: /python/ig,
+						text: '<a href="https://python.org">Python</a>'
+					},
+					{
+						regEx: /django/ig,
+						text: '<a href="https://www.djangoproject.com">Django</a>'
+					},
+					{
+						regEx: /node/ig,
+						text: '<a href="https://codejs.org">Node.js</a>'
+					},
+					{
+						regEx: /postgres/ig,
+						text: '<a href="http://www.postgresql.org">PostgreSQL</a>' // no HTTPS!
+					}
+				];
+
+			$p.each( function( key, $value ){
+				matches.forEach( function( match ){
+					$value.innerHTML = $value.innerHTML.replace( match.regEx, match.text );
+				} )
+			} );
+		} )()
+	</script>
+</html>

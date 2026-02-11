@@ -172,9 +172,6 @@
         }
 
         .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
             margin-bottom: 10px;
         }
 
@@ -182,19 +179,48 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.1rem;
             color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
         }
 
-        .project-years {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            background: var(--accent-dim);
-            padding: 2px 8px;
+        a.project-name:hover {
+            opacity: 0.7;
         }
 
         .project-desc {
             color: var(--text-secondary);
             font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .project-links img {
+            width: 40px;
+            height: auto;
         }
 
         /* Skills as terminal output */
@@ -373,10 +399,6 @@
                 gap: 10px;
             }
 
-            .project-header {
-                flex-direction: column;
-                gap: 10px;
-            }
 
             .terminal-line {
                 flex-direction: column;
@@ -393,7 +415,7 @@
     <div class="container">
         <header>
             <h1 class="name">william_mantly</h1>
-            <p class="tagline">Backend & Infrastructure Engineer. I build things that run for 15 years untouched.</p>
+            <p class="tagline">Backend & Infrastructure Engineer. I build things that run untouched for years.</p>
             <div class="quick-stats">
                 <div class="stat">experience: <span>20+ years</span></div>
                 <div class="stat">philosophy: <span>simple > clever</span></div>
@@ -429,15 +451,13 @@
                 <div class="project">
                     <div class="project-header">
                         <span class="project-name">Codeland</span>
-                        <span class="project-years">2015 - present</span>
                     </div>
                     <p class="project-desc">Self-hosted serverless platform. 24 languages, real Linux containers, instant public URLs, websocket terminals. Built what Replit does, years before they did it properly. Pre-warmed container pools, auto-scaling workers, $40/mo infrastructure.</p>
                 </div>
 
                 <div class="project">
                     <div class="project-header">
-                        <span class="project-name">Dynamic Reverse Proxy</span>
-                        <span class="project-years">2006 - present</span>
+                        <a href="http://proxy.projects.theta42.com/" target="_blank" class="project-name">Dynamic Reverse Proxy</a>
                     </div>
                     <p class="project-desc">OpenResty + Lua + Redis + Node.js control plane. Wildcard SSL via ACME DNS challenges, port-prepending subdomains, trie-based domain lookup. Add a host in the UI, works instantly. No nginx reload. Running 20 years across rewrites.</p>
                 </div>
@@ -445,25 +465,32 @@
                 <div class="project">
                     <div class="project-header">
                         <span class="project-name">SSO Manager</span>
-                        <span class="project-years">2019 - present</span>
                     </div>
                     <p class="project-desc">Custom OpenLDAP frontend. Invite links with UUID tokens, self-service password reset, group-based access control. Built after getting hacked over a temp password. What FreeIPA and Keycloak wish they were—simple and usable.</p>
                 </div>
 
                 <div class="project">
                     <div class="project-header">
-                        <span class="project-name">SimpleWorksJS</span>
-                        <span class="project-years">in progress</span>
+                        <a href="https://william.mantly.vip/model-redis/" target="_blank" class="project-name">model-redis</a>
                     </div>
-                    <p class="project-desc">Full-stack framework for internal tools. Define a model, get REST API + real-time sync + auto-generated UI. Django admin energy for Node. No React. No TypeScript. No build step. Just Bootstrap and ship.</p>
+                    <p class="project-desc">Simple ORM model for Redis in Node.js. The only external dependency is redis. This provides a simple ORM interface, with schema, for Redis. This is not meant for large data sets and is geared more for small, internal infrastructure based projects that do not require complex data models.</p>
+                    <div class="project-links">
+                        <a href="https://www.npmjs.com/package/model-redis" target="_blank">
+                            <img src="npm.png" alt="npm">
+                        </a>
+                    </div>
                 </div>
 
                 <div class="project">
                     <div class="project-header">
-                        <span class="project-name">jq-repeat</span>
-                        <span class="project-years">2015</span>
+                        <a href="https://william.mantly.vip/jq-repeat/" target="_blank" class="project-name">jq-repeat</a>
                     </div>
                     <p class="project-desc">jQuery plugin for reactive lists. Angular's ng-repeat, extracted. Auto DOM sync on push/pop/splice. Published on npm. Because you don't need React to update a list.</p>
+                    <div class="project-links">
+                        <a href="https://www.npmjs.com/package/jq-repeat" target="_blank">
+                            <img src="npm.png" alt="npm">
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -523,7 +550,9 @@
             <div class="contact-links">
                 <a href="https://github.com/wmantly" target="_blank">github.com/wmantly</a>
                 <a href="https://www.linkedin.com/in/wmantly" target="_blank">linkedin.com/in/wmantly</a>
-                <a href="mailto:william@theta42.com">william@theta42.com</a>
+                <a href="https://www.tiktok.com/@tuxdoingstuff" target="_blank">tiktok.com/@tuxdoingstuff</a>
+                <a href="https://clawhub.ai/u/wmantly" target="_blank">clawhub.ai/u/wmantly</a>
+                <a href="mailto:william@mantly.vip">william@mantly.vip</a>
                 <a href="william_mantly-2025.pdf" target="_blank">resume.pdf</a>
             </div>
         </section>

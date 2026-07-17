@@ -25,12 +25,19 @@
             box-sizing: border-box;
         }
 
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
+            overflow-wrap: break-word;
+            -webkit-tap-highlight-color: var(--accent-dim);
         }
 
         /* Subtle grid background */
@@ -98,40 +105,20 @@
             color: var(--accent);
         }
 
-        /* Philosophy Section */
-        .philosophy {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 30px;
+        /* Fortune block */
+        .fortune-block {
             margin-bottom: 40px;
-            position: relative;
+            cursor: pointer;
         }
 
-        .philosophy::before {
-            content: '/*';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
+        .fortune-block:hover .fortune-btn,
+        .fortune-block:focus-within .fortune-btn {
+            border-color: var(--accent);
+            background: var(--accent-dim);
         }
 
-        .philosophy::after {
-            content: '*/';
-            position: absolute;
-            bottom: 10px;
-            right: 15px;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
-
-        .philosophy p {
-            color: var(--text-secondary);
-            font-style: italic;
-            text-align: center;
-            padding: 10px 30px;
+        .fortune-block .fortune-out {
+            font-size: 0.95rem;
         }
 
         /* Section Styling */
@@ -166,13 +153,44 @@
             transition: border-color 0.2s ease, transform 0.2s ease;
         }
 
-        .project:hover {
-            border-color: var(--accent);
-            transform: translateX(5px);
+        @media (hover: hover) {
+            .project:hover {
+                border-color: var(--accent);
+                transform: translateX(5px);
+            }
         }
 
         .project-header {
             margin-bottom: 10px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            background: var(--accent-dim);
+            padding: 2px 8px;
+        }
+
+        .project-desc code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--text-primary);
+            background: #1a1a1a;
+            border: 1px solid var(--border);
+            padding: 1px 5px;
+        }
+
+        .project-desc em {
+            color: var(--text-primary);
+            font-style: italic;
         }
 
         .project-name {
@@ -257,6 +275,67 @@
             list-style: none;
         }
 
+        .beliefs-cmd {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .beliefs-terminal .beliefs li {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            padding: 8px 0 8px 22px;
+            line-height: 1.5;
+        }
+
+        .fortune-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fortune-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            background: none;
+            border: 1px dashed var(--border);
+            padding: 5px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .fortune-btn:hover,
+        .fortune-btn:focus-visible {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            outline: none;
+        }
+
+        .fortune-out {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 12px;
+            min-height: 2.6em;
+            line-height: 1.5;
+        }
+
+        .fortune-out.active::after {
+            content: '▌';
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fortune-out.active::after {
+                animation: none;
+            }
+        }
+
         .beliefs li {
             padding: 12px 0;
             border-bottom: 1px solid var(--border);
@@ -280,6 +359,25 @@
         /* Origin Story */
         .origin-section {
             margin-bottom: 50px;
+        }
+
+        h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        h3::before {
+            content: '### ';
+            color: var(--accent);
+        }
+
+        .story-part + .story-part {
+            margin-top: 35px;
         }
 
         .origin-content {
@@ -340,15 +438,28 @@
             font-style: normal;
         }
 
-        @media (max-width: 600px) {
-            .origin-content {
-                grid-template-columns: 1fr;
-            }
+        .origin-text a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            transition: border-color 0.2s ease;
+        }
 
-            .origin-photo {
-                max-width: 200px;
-                margin: 0 auto;
-            }
+        .origin-text a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Call to action */
+        .cta {
+            border-left: 2px solid var(--accent);
+            background: var(--accent-dim);
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+
+        .cta strong {
+            color: var(--accent);
         }
 
         /* Contact */
@@ -389,24 +500,98 @@
         }
 
         /* Responsive */
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
+            .container {
+                padding: 36px 16px;
+            }
+
+            header {
+                margin-bottom: 40px;
+                padding-bottom: 28px;
+            }
+
             .name {
                 font-size: 1.8rem;
+                word-break: break-word;
+            }
+
+            .tagline {
+                font-size: 1.05rem;
             }
 
             .quick-stats {
-                flex-direction: column;
-                gap: 10px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px 16px;
             }
 
+            .philosophy {
+                padding: 30px 15px;
+            }
+
+            .philosophy p {
+                padding: 0;
+                font-size: 0.95rem;
+            }
+
+            section,
+            .origin-section {
+                margin-bottom: 36px;
+            }
+
+            .origin-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .origin-photo {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .origin-text,
+            .project {
+                padding: 20px 16px;
+            }
+
+            .skills-terminal {
+                padding: 16px;
+            }
 
             .terminal-line {
                 flex-direction: column;
-                gap: 5px;
+                gap: 2px;
+                margin-bottom: 14px;
             }
 
             .terminal-category {
                 min-width: auto;
+            }
+
+            /* Tap targets: fingers, not cursors */
+            .project-links a,
+            .contact-links a,
+            .fortune-btn {
+                min-height: 44px;
+                padding: 10px 14px;
+                justify-content: center;
+            }
+
+            .contact-links {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .contact-links a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.85rem;
+            }
+
+            footer {
+                margin-top: 40px;
             }
         }
     </style>
@@ -424,23 +609,55 @@
             </div>
         </header>
 
-        <div class="philosophy">
-            <p>"Don't build systems so complex that you need a compiler to understand them. That's the real bug."</p>
+        <div class="skills-terminal fortune-block">
+            <div class="fortune-line">
+                <span class="terminal-prompt">$</span>
+                <button type="button" class="fortune-btn">fortune ~/beliefs.txt</button>
+            </div>
+            <p class="fortune-out" aria-live="polite"></p>
         </div>
 
         <section class="origin-section">
-            <h2>Origin Story</h2>
+            <h2>The Story</h2>
+            <div class="story-part">
+            <h3>1999. Learning without error messages</h3>
             <div class="origin-content">
                 <div class="origin-photo">
                     <img src="6242401.png" alt="William Mantly">
                 </div>
                 <div class="origin-text">
                     <p><strong>1999. WebTV. A physical Perl book. No computer.</strong></p>
-                    <p>I learned to code by typing Perl into an HTML textarea on a free web host, using a television as my monitor. No local execution. No error messages—debug was turned off. When something broke, I got a blank screen. That's it.</p>
-                    <p>My debugging process: comment out every line, add an echo at the end, uncomment line by line until the echo disappeared. That was all I had. Google in 1999 just returned the Perl language specification—useless for a kid trying to figure out why his CGI script wouldn't run.</p>
-                    <p>Eventually my uncle gave me a real computer: 50MHz CPU, 36MB RAM, 300MB across 4 hard drives. <em>Heaven.</em> I tried to install Linux, got it working, but couldn't figure out how to dial into AOL with it. Back to Windows—for a while.</p>
-                    <p><strong>Then broadband happened.</strong> Ethernet just works. No modem drivers. No proprietary dialers. I installed Linux again and never looked back. Daily driving Linux since 2006—through Debian, Ubuntu (until they lost their minds with Unity and snaps), Linux Mint on desktop, and back to Debian on servers where it belongs.</p>
-                    <p>The hard road taught me to actually understand things. When you learn without error messages, without Stack Overflow, without an IDE—you learn to <em>think</em> about code, not just write it.</p>
+                    <p>I learned to code by typing Perl into an HTML textarea on a free web host, using a television as my monitor. No local execution. No error messages, because debug was turned off. When something broke, I got a blank screen. That's it.</p>
+                    <p>My debugging process: comment out every line, add an echo at the end, uncomment line by line until the echo disappeared. That was all I had. Google in 1999 just returned the Perl language spec, which is useless for a kid trying to figure out why his CGI script won't run.</p>
+                    <p>Eventually my uncle gave me a real computer: 50MHz CPU, 36MB RAM, 300MB across 4 hard drives. <em>Heaven.</em> I tried to install Linux, got it working, but couldn't figure out how to dial into AOL with it. Back to Windows for a while.</p>
+                    <p><strong>Then broadband happened.</strong> Ethernet just works. No modem drivers. No proprietary dialers. I installed Linux again and never looked back. Daily driving it since 2006, through Debian, Ubuntu (until they lost their minds with Unity and snaps), Linux Mint on the desktop, and back to Debian on servers where it belongs.</p>
+                    <p>The hard road taught me to actually understand things. When you learn without error messages, without Stack Overflow, without an IDE, you learn to <em>think</em> about code instead of just writing it.</p>
+                </div>
+            </div>
+            </div>
+
+            <div class="story-part">
+                <h3>2002 → The homelab</h3>
+                <div class="origin-text">
+                    <p><strong>2002. A hand-me-down Dell Optiplex, Pentium 3, running a Counter-Strike server.</strong></p>
+                    <p>It ran Windows XP and I started the server by double clicking the exe. I could not get it to run as a proper service the way I wanted, so I moved it to Debian. <em>Never looked back.</em> Apache showed up soon after, I learned some PHP, and I built a little app to restart the CS server and purge its logs. First real thing I ever built, because I was the guy who needed it.</p>
+                    <p>For over a decade the pattern held: <strong>when I upgraded my desktop, the old one became the new server.</strong> Old desktops work fine. Storage is where it falls apart. Upgrading meant copying everything over by hand and keeping a map in my head of what's on which drive and which drive has space. That's not a storage strategy, it's a memory game you eventually lose.</p>
+                    <p><strong>Mid 2010s: ZFS and RAID 10.</strong> Data safe, faster, and dead simple to grow. Swap a pair out, one drive at a time, and boom, more space. No copying. No inventory in my head.</p>
+                    <p>Today it's a <strong>4 node Proxmox cluster</strong>: HPE ProLiant DL Gen8s, two running 24/7 and two I bring up on demand for whatever I'm working on. UniFi APs and router, Brocade 10 gig PoE switch. That gear has lived in hot, humid attics and dusty basements. Completely unbothered, just keeps running. <em>That should be HPE's slogan.</em></p>
+                    <p><strong>It isn't a lab. It's production.</strong> Everything on this page runs here for real. So does Emby, the house, client demos, and <a href="https://corejourney.org" target="_blank">corejourney.org</a>, a public Minecraft server that strangers actually play on. Real people depend on it 24/7/365, so it <em>has to</em> be up.</p>
+                    <p>That's the part a cloud console can't teach you. When you own the drives, the switch, the hypervisor and the app, and the users complain to your face, you find out real quick what breaks and what actually matters.</p>
+                </div>
+            </div>
+
+            <div class="story-part">
+                <h3>Today</h3>
+                <div class="origin-text">
+                    <p><strong>Theta42 is my consulting company.</strong> I own it. Software work dried up when the AI stuff hit, so a lot of my days now are education and tutoring, plus whatever else comes through the door. I'll wire cat6 if the money's right. Work is work.</p>
+                    <p>Nights are for whatever has my attention, which lately means building software with my new pals Claude, Gemini and Ollama.</p>
+                    <p>Local gets <strong>17GB of VRAM</strong>, 12 from an RTX 2060 and 5 from a P2000, and I keep it pinned. I like local for the cost and the privacy. But reality is reality, and this stuff changes every month. The question I keep asking is: <em>are you running on my computer, or on AWS?</em> Right now it's still usually AWS. I don't have to like it.</p>
+                    <p>Getting real work out of scavenged VRAM is half practical, half sport. The limit teaches you how the thing actually works, and once you know how it works you know which limit is the one really hurting you. Same loop as 1999.</p>
+                    <p><strong>The house runs on the cluster too.</strong> Home Assistant, local voice wired into the local models, and nothing that phones home. I'm dogmatic about that one. No vendor gets to brick my light switches or start charging me rent on them. It's another production service with users who complain to my face.</p>
+                    <p>Rest of the time I'm hunting a deal on gear I don't need yet.</p>
                 </div>
             </div>
         </section>
@@ -450,6 +667,37 @@
             <div class="projects">
                 <div class="project">
                     <div class="project-header">
+                        <a href="https://theta42.github.io/theta-env/" target="_blank" class="project-name">theta-env</a>
+                        <span class="project-tag">flagship</span>
+                    </div>
+                    <p class="project-desc">Identity and access management for home labs and small businesses, in one <code>./setup.sh</code>. Bundles SSO Manager and Proxy into a single Docker Compose stack: an OIDC provider with a real LDAP directory behind an OIDC-aware reverse proxy, with client registration and config sync wired up for you. Enterprise SSO without the enterprise.</p>
+                    <div class="project-links">
+                        <a href="https://theta42.github.io/theta-env/" target="_blank">docs</a>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <a href="https://theta42.github.io/proxy/" target="_blank" class="project-name">Proxy</a>
+                    </div>
+                    <p class="project-desc">Reverse proxy and HTTPS termination that puts any app behind single sign-on. OpenResty under the hood, wildcard Let's Encrypt certs via DNS challenge (Cloudflare, DigitalOcean, PorkBun, DuckDNS), dynamic hostname routing with no reload. Unlike Traefik or Caddy, it's an OIDC <em>and</em> LDAP client, so access decisions come from a real user directory instead of a static allowlist.</p>
+                    <div class="project-links">
+                        <a href="https://theta42.github.io/proxy/" target="_blank">docs</a>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <a href="https://theta42.github.io/sso-manager-node/" target="_blank" class="project-name">SSO Manager</a>
+                    </div>
+                    <p class="project-desc">Self-hosted OIDC provider with OpenLDAP built in: users, groups, POSIX accounts, SSH keys, sudo roles. Email invites, self-service password reset and API tokens, LDAPS for legacy apps that still want to bind directly. Keycloak and Authentik make you bring your own directory; this ships one. Built after getting hacked over a temp password.</p>
+                    <div class="project-links">
+                        <a href="https://theta42.github.io/sso-manager-node/" target="_blank">docs</a>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
                         <span class="project-name">Codeland</span>
                     </div>
                     <p class="project-desc">Self-hosted serverless platform. 24 languages, real Linux containers, instant public URLs, websocket terminals. Built what Replit does, years before they did it properly. Pre-warmed container pools, auto-scaling workers, $40/mo infrastructure.</p>
@@ -457,16 +705,26 @@
 
                 <div class="project">
                     <div class="project-header">
-                        <a href="http://proxy.projects.theta42.com/" target="_blank" class="project-name">Dynamic Reverse Proxy</a>
+                        <a href="https://www.npmjs.com/package/linux-sys-user" target="_blank" class="project-name">linux-sys-user</a>
                     </div>
-                    <p class="project-desc">OpenResty + Lua + Redis + Node.js control plane. Wildcard SSL via ACME DNS challenges, port-prepending subdomains, trie-based domain lookup. Add a host in the UI, works instantly. No nginx reload. Running 20 years across rewrites.</p>
+                    <p class="project-desc">Linux user and group management from Node.js, with zero dependencies. Promises and async/await, ES5 compatible. Read-only calls (<code>getUsers</code>, <code>getUserInfo</code>, <code>verifySSHKey</code>) work unprivileged via a separate non-root export; only the mutating ones need root. Adopted from an abandoned upstream and kept alive.</p>
+                    <div class="project-links">
+                        <a href="https://www.npmjs.com/package/linux-sys-user" target="_blank">
+                            <img src="npm.png" alt="npm">
+                        </a>
+                    </div>
                 </div>
 
                 <div class="project">
                     <div class="project-header">
-                        <span class="project-name">SSO Manager</span>
+                        <a href="https://simpleworkjs.github.io/conf/" target="_blank" class="project-name">@simpleworkjs/conf</a>
                     </div>
-                    <p class="project-desc">Custom OpenLDAP frontend. Invite links with UUID tokens, self-service password reset, group-based access control. Built after getting hacked over a temp password. What FreeIPA and Keycloak wish they were—simple and usable.</p>
+                    <p class="project-desc">Config management for Node.js in one require. Drop a <code>conf/</code> directory with <code>base.js</code>, per-environment overrides, and a gitignored <code>secrets.js</code>; they deep-merge by <code>NODE_ENV</code>. One dependency. No schema DSL, no loader ceremony.</p>
+                    <div class="project-links">
+                        <a href="https://www.npmjs.com/package/@simpleworkjs/conf" target="_blank">
+                            <img src="npm.png" alt="npm">
+                        </a>
+                    </div>
                 </div>
 
                 <div class="project">
@@ -533,25 +791,40 @@
 
         <section>
             <h2>Beliefs</h2>
-            <ul class="beliefs">
-                <li>Simple systems that work beat complex systems that might work</li>
-                <li>If you need TypeScript to understand your types, you named them wrong</li>
-                <li>The best code is code you never think about again</li>
-                <li>Unix got it right: small tools, text streams, compose everything</li>
-                <li>95% of apps need CRUD and a form. Build for that.</li>
-                <li>Your $20 VPS can handle your entire total addressable market</li>
-                <li>Debuggers are for code you don't understand. Understand your code.</li>
-                <li>Scaffold for where the project is going, not just where it is</li>
-            </ul>
+            <div class="skills-terminal beliefs-terminal">
+                <div class="beliefs-cmd"><span class="terminal-prompt">$</span> cat ~/beliefs.txt</div>
+                <ul class="beliefs">
+                    <li>Don't build systems so complex that you need a compiler to understand them. That's the real bug.</li>
+                    <li>Simple systems that work beat complex systems that might work</li>
+                    <li>If you need TypeScript to understand your types, you named them wrong</li>
+                    <li>The best code is code you never think about again</li>
+                    <li>Unix got it right: small tools, text streams, compose everything</li>
+                    <li>95% of apps need CRUD and a form. Build for that.</li>
+                    <li>Your $20 VPS can handle your entire total addressable market</li>
+                    <li>Debuggers are for code you don't understand. Understand your code.</li>
+                    <li>Scaffold for where the project is going, not just where it is</li>
+                    <li>If a vendor can brick it, you never owned it</li>
+                    <li>Uptime is a promise to real people, not a number on a dashboard</li>
+                    <li>Run it yourself once and you'll stop guessing</li>
+                    <li>The limit is the cheapest teacher you will ever get</li>
+                </ul>
+            </div>
         </section>
 
         <section>
-            <h2>Contact</h2>
+            <h2>Socials</h2>
             <div class="contact-links">
                 <a href="https://github.com/wmantly" target="_blank">github.com/wmantly</a>
                 <a href="https://www.linkedin.com/in/wmantly" target="_blank">linkedin.com/in/wmantly</a>
                 <a href="https://www.tiktok.com/@tuxdoingstuff" target="_blank">tiktok.com/@tuxdoingstuff</a>
                 <a href="https://clawhub.ai/u/wmantly" target="_blank">clawhub.ai/u/wmantly</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p class="cta">If you've got something interesting in this world, backend, infrastructure, platform, some small team where one guy owning the whole stack is a feature and not a liability, <strong>let's talk.</strong> Remote or NYC.</p>
+            <div class="contact-links">
                 <a href="mailto:william@mantly.vip">william@mantly.vip</a>
                 <a href="william_mantly-2025.pdf" target="_blank">resume.pdf</a>
             </div>
@@ -562,6 +835,103 @@
             <p>Systems running since <span class="uptime">2006</span>. Still untouched. Still working.</p>
         </footer>
     </div>
+
+    <script>
+        (function () {
+            var block = document.querySelector('.fortune-block');
+            var out = block && block.querySelector('.fortune-out');
+            if (!block || !out) return;
+
+            var beliefs = [].map.call(
+                document.querySelectorAll('.beliefs li'),
+                function (li) { return li.textContent.trim(); }
+            );
+            if (!beliefs.length) return;
+
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var deck = [];
+            var current = '';
+            var timer;
+
+            // Shuffled deck, so every belief comes up once before any repeats.
+            function refill() {
+                deck = beliefs.slice();
+                for (var i = deck.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var swap = deck[i];
+                    deck[i] = deck[j];
+                    deck[j] = swap;
+                }
+                if (deck.length > 1 && deck[deck.length - 1] === current) {
+                    deck.push(deck.shift());
+                }
+            }
+
+            function next() {
+                if (!deck.length) refill();
+                current = deck.pop();
+                clearInterval(timer);
+                out.classList.add('active');
+
+                if (reduce) {
+                    out.textContent = current;
+                    return;
+                }
+
+                out.textContent = '';
+                var n = 0;
+                timer = setInterval(function () {
+                    out.textContent = current.slice(0, ++n);
+                    if (n >= current.length) clearInterval(timer);
+                }, 18);
+            }
+
+            // Hold open the height of the longest belief so cycling never
+            // shoves the page around under someone mid scroll.
+            function reserve() {
+                var showing = out.textContent;
+                out.style.minHeight = '';
+                var tallest = 0;
+                for (var i = 0; i < beliefs.length; i++) {
+                    out.textContent = beliefs[i];
+                    if (out.scrollHeight > tallest) tallest = out.scrollHeight;
+                }
+                out.textContent = showing;
+                out.style.minHeight = tallest + 'px';
+            }
+
+            // Auto advance, but never fight a click: any click restarts the clock.
+            var EVERY = 8000;
+            var cycle;
+
+            function start() {
+                if (reduce) return;
+                clearInterval(cycle);
+                cycle = setInterval(next, EVERY);
+            }
+
+            block.addEventListener('click', function () {
+                next();
+                start();
+            });
+
+            // No point cycling to an empty room.
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) clearInterval(cycle);
+                else start();
+            });
+
+            var resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(reserve, 150);
+            });
+
+            reserve();
+            next();
+            start();
+        }());
+    </script>
 </body>
 <script defer src="https://tracking.718it.biz/script.js" data-website-id="94066afd-149d-49c0-9a69-190ec5ce996a"></script>
 </html>

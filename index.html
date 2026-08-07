@@ -667,12 +667,12 @@
             <div class="projects">
                 <div class="project">
                     <div class="project-header">
-                        <a href="https://theta42.github.io/theta-env/" target="_blank" class="project-name">theta-env</a>
+                        <a href="https://theta42.github.io/theta-suite/" target="_blank" class="project-name">Theta Suite</a>
                         <span class="project-tag">flagship</span>
                     </div>
-                    <p class="project-desc">Identity and access management for home labs and small businesses, in one <code>./setup.sh</code>. Bundles SSO Manager and Proxy into a single Docker Compose stack: an OIDC provider with a real LDAP directory behind an OIDC-aware reverse proxy, with client registration and config sync wired up for you. Enterprise SSO without the enterprise.</p>
+                    <p class="project-desc">Identity, access, and secrets for home labs and small businesses, in one <code>./setup.sh</code>. Bundles an OIDC/LDAP identity provider, an OIDC-aware reverse proxy, a directory-driven SSH jump host, and Linux host enrollment into one Docker Compose stack, all reading from a shared OpenBao secrets store. Every host and app auto-registers into a real inventory graph with its own access groups. Enterprise SSO without the enterprise. (Formerly theta-env.)</p>
                     <div class="project-links">
-                        <a href="https://theta42.github.io/theta-env/" target="_blank">docs</a>
+                        <a href="https://theta42.github.io/theta-suite/" target="_blank">docs</a>
                     </div>
                 </div>
 
@@ -680,7 +680,7 @@
                     <div class="project-header">
                         <a href="https://theta42.github.io/proxy/" target="_blank" class="project-name">Proxy</a>
                     </div>
-                    <p class="project-desc">Reverse proxy and HTTPS termination that puts any app behind single sign-on. OpenResty under the hood, wildcard Let's Encrypt certs via DNS challenge (Cloudflare, DigitalOcean, PorkBun, DuckDNS), dynamic hostname routing with no reload. Unlike Traefik or Caddy, it's an OIDC <em>and</em> LDAP client, so access decisions come from a real user directory instead of a static allowlist.</p>
+                    <p class="project-desc">Reverse proxy and HTTPS termination that puts any app behind single sign-on. OpenResty under the hood, wildcard Let's Encrypt certs via DNS challenge (Cloudflare, DigitalOcean, PorkBun, DuckDNS), dynamic hostname routing with no reload. Unlike Traefik or Caddy, it's an OIDC <em>and</em> LDAP client, so access decisions come from a real user directory instead of a static allowlist. Per-host rate limiting, response caching, HSTS, and IP allow/deny come standard, plus round-robin load balancing and self-service API tokens for scripting.</p>
                     <div class="project-links">
                         <a href="https://theta42.github.io/proxy/" target="_blank">docs</a>
                     </div>
@@ -690,7 +690,7 @@
                     <div class="project-header">
                         <a href="https://theta42.github.io/sso-manager-node/" target="_blank" class="project-name">SSO Manager</a>
                     </div>
-                    <p class="project-desc">Self-hosted OIDC provider with OpenLDAP built in: users, groups, POSIX accounts, SSH keys, sudo roles. Email invites, self-service password reset and API tokens, LDAPS for legacy apps that still want to bind directly. Keycloak and Authentik make you bring your own directory; this ships one. Built after getting hacked over a temp password.</p>
+                    <p class="project-desc">Self-hosted OIDC provider with OpenLDAP built in: users, groups, POSIX accounts, SSH keys, sudo roles. Email invites, self-service password reset and API tokens, LDAPS for legacy apps that still want to bind directly. Discovery plugins map your Proxmox VMs, UniFi clients, and Docker containers into a real inventory graph automatically, and a built-in Vault (OpenBao-backed) gives every user their own secret storage. Keycloak and Authentik make you bring your own directory; this ships one. Built after getting hacked over a temp password.</p>
                     <div class="project-links">
                         <a href="https://theta42.github.io/sso-manager-node/" target="_blank">docs</a>
                     </div>
